@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="description" content="Frontend Developer building responsive and user-friendly web applications using modern technologies like React.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chikezie Samuel Emeka | Frontend Developer</title>
+  <link rel="stylesheet" href="styles/style.css">
+</head>
+
+<body>
+<div class="site-wrapper">
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="logo">
+      <img src="images/mylogo.jpg" alt="logo" width="50">
+    </div>
+
+    <nav class="nav">
+      <a href="#projects">Projects</a>
+      <a href="#experience">Experience</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <!-- MAIN -->
+  <main>
+
+    <!-- HERO -->
+    <section class="hero">
+      <h1>
+        Frontend Developer crafting
+        <span>clean, fast & responsive web experiences</span>
+      </h1>
+
+      <p>
+I build interactive web apps using JavaScript and React, focused on usability and performance.
+</p>
+      <p><strong>React • JavaScript • UI/UX Focused</strong></p>
+
+      <div class="hero-actions">
+        <a href="#projects" class="btn">View Projects</a>
+        <a href="#contact" class="btn-ghost">Contact Me</a>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects" class="section">
+      <h2>Projects</h2>
+
+      <article class="project-card">
+  <h3>Audio Player App</h3>
+  <p>Custom JS audio player with full controls and track switching.</p>
+
+  <audio controls id="audioplayer"></audio>
+
+  <div class="player-controls">
+    <button id="prev">⏮</button>
+    <button id="play">▶️</button>
+    <button id="next">⏭</button>
+    <button id="repeat">🔁</button>
+  </div>
+
+  <div class="project-links">
+    <a href="#" target="_blank">Live Demo</a>
+    <a href="https://github.com/Yungmora" target="_blank">GitHub</a>
+  </div>
+
+</article>
+      <article>
+        <h3>🌐 Personal Portfolio</h3>
+        <p>Responsive landing page showcasing my work and skills.</p>
+      </article>
+
+      <article>
+        <h3>🎓 Capstone Project</h3>
+        <p>Worked on the footer section with responsive design using React.</p>
+      </article>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section id="experience" class="section">
+      <h2>Experience</h2>
+
+      <ul>
+        <li>B.Sc. Computer Science – NOUN (2021)</li>
+        <li>Cisco Networking Academy – Get Connected (2021)</li>
+        <li>Responsive Web Design – FreeCodeCamp (2025)</li>
+        <li>Frontend Developer Graduate – TSAcademy (2026)</li>
+      </ul>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="section">
+      <h2>About Me</h2>
+
+      <p>
+        I'm a frontend developer based in Lagos, Nigeria, with a background in music production.
+        I build responsive, user-friendly web applications using modern tools like React and JavaScript.
+      </p>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="section">
+      <h2>Contact</h2>
+
+      <form action="https://formsubmit.co/yungmoramuzik@gmail.com" method="POST">
+        <input type="hidden" name="_subject" value="New Contact Message">
+        <input type="hidden" name="_captcha" value="false">
+
+        <label>
+          Name:
+          <input type="text" name="name" required>
+        </label>
+
+        <label>
+          Email:
+          <input type="email" name="email" required>
+        </label>
+
+        <label>
+          Message:
+          <textarea name="message" rows="4" required></textarea>
+        </label>
+
+        <button class="btn">Send Message</button>
+      </form>
+
+      <p>
+        <a href="https://wa.me/2349052297452" target="_blank">
+          💬 Chat on WhatsApp
+        </a>
+      </p>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <p>&copy; 2025 Chikezie Samuel Emeka</p>
+
+    <div class="socials">
+      <a href="https://github.com/Yungmora" target="_blank">GitHub</a>
+      <a href="mailto:chikeziesamuelchikezie@gmail.com">Email</a>
+    </div>
+  </footer>
+
+</div>
+
+<!-- SCRIPT -->
+<script>
+window.addEventListener("DOMContentLoaded", () => {
+  const tracks = [
+    { title: "Busayo", src: "music/Busayo.mp3" },
+    { title: "Open Gym Challenge", src: "music/open-gym-challenge-yung-mora.mp3" },
+    { title: "Row Your Boat Mastering", src: "music/row-your-boat-mastering.mp3" }
+  ];
+
+  const audio = document.getElementById("audioplayer");
+  const playBtn = document.getElementById("play");
+  const nextBtn = document.getElementById("next");
+  const prevBtn = document.getElementById("prev");
+  const repeatBtn = document.getElementById("repeat");
+
+  let currentTrack = 0;
+  let isRepeating = false;
+
+  function loadTrack(index) {
+    audio.src = tracks[index].src;
+    audio.load();
+  }
+
+  playBtn.addEventListener("click", () => {
+    if (audio.paused) {
+      audio.play();
+      playBtn.textContent = "⏸";
+    } else {
+      audio.pause();
+      playBtn.textContent = "▶️";
+    }
+  });
+
+  nextBtn.addEventListener("click", () => {
+    currentTrack = (currentTrack + 1) % tracks.length;
+    loadTrack(currentTrack);
+    audio.play();
+  });
+
+  prevBtn.addEventListener("click", () => {
+    currentTrack = (currentTrack - 1 + tracks.length) % tracks.length;
+    loadTrack(currentTrack);
+    audio.play();
+  });
+
+  repeatBtn.addEventListener("click", () => {
+    isRepeating = !isRepeating;
+    audio.loop = isRepeating;
+  });
+
+  audio.addEventListener("ended", () => {
+    if (!isRepeating) nextBtn.click();
+  });
+
+  loadTrack(currentTrack);
+});
+</script>
+
+</body>
+</html>
